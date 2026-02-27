@@ -8,5 +8,12 @@ export const AuthContextProvider = ({ children }) => {
       : null,
   );
 
-  return <AuthContext value={{ user, setUser }}>{children}</AuthContext>;
+  const logOutUser = () => {
+    localStorage.removeItem("user");
+    setUser(null);
+  };
+
+  return (
+    <AuthContext value={{ user, setUser, logOutUser }}>{children}</AuthContext>
+  );
 };

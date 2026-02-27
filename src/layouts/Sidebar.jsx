@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import {
   LayoutDashboard,
   CheckSquare,
@@ -13,7 +13,7 @@ import {
 import { cn } from "../lib/utils";
 import { Link, useLocation } from "react-router";
 import Logo from "../components/Logo";
-import { SidebarContext } from "../contexts";
+import { AuthContext, SidebarContext } from "../contexts";
 
 const menuItems = [
   { icon: LayoutDashboard, label: "Dashboard", href: "/" },
@@ -26,14 +26,14 @@ const menuItems = [
 const generalItems = [
   { icon: Settings, label: "Settings", href: "/settings" },
   { icon: LifeBuoy, label: "Help", href: "/help" },
-  { icon: LogOut, label: "Logout", href: "/logout" },
+  // { icon: LogOut, label: "Logout", href: "/logout" },
 ];
 
 export default function Sidebar() {
-  const [hoveredItem, setHoveredItem] = useState(null);
   const pathname = useLocation().pathname;
 
   const { showSidebar, setShowSidebar } = useContext(SidebarContext);
+  const { logOutUser } = useContext(AuthContext);
 
   return (
     <>
@@ -69,19 +69,24 @@ export default function Sidebar() {
                   <Link
                     key={item.label}
                     to={item.href}
-                    onClick={() => setShowSidebar(false)}
-                    onMouseEnter={() => setHoveredItem(item.label)}
-                    onMouseLeave={() => setHoveredItem(null)}
+                    // onClick={() => setShowSidebar(false)}
+                    // onMouseEnter={() => setHoveredItem(item.label)}
+                    // onMouseLeave={() => setHoveredItem(null)}
                     className={cn(
-                      "w-full flex items-center gap-2.5 px-2.5 py-2 font-extralight transition-all duration-300",
+                      "relative w-full flex items-center gap-2.5 px-2.5 py-2 font-extralight hover:font-semibold transition-all duration-300",
                       isActive
                         ? "font-semibold text-primary"
                         : "text-secondary hover:text-foreground hover:translate-x-1",
                     )}
                   >
-                    {isActive && (
-                      <div className="absolute -left-3 rounded-lg bg-primary w-5 h-10"></div>
-                    )}
+                    <div
+                      className={cn(
+                        "absolute -left-7 rounded-lg bg-primary w-5 h-10 transition-all duration-300",
+                        isActive
+                          ? "opacity-100 scale-y-100"
+                          : "opacity-0 scale-y-50",
+                      )}
+                    ></div>
                     <item.icon
                       fill={isActive ? "#227d53" : "none"}
                       className={cn(
@@ -115,27 +120,40 @@ export default function Sidebar() {
                   <Link
                     key={item.label}
                     to={item.href}
-                    onClick={() => setShowSidebar(false)}
-                    onMouseEnter={() => setHoveredItem(item.label)}
-                    onMouseLeave={() => setHoveredItem(null)}
+                    // onClick={() => setShowSidebar(false)}
+                    // onMouseEnter={() => setHoveredItem(item.label)}
+                    // onMouseLeave={() => setHoveredItem(null)}
                     className={cn(
-                      "w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg font-extralight transition-all duration-300",
+                      "relative w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg font-extralight hover:font-semibold transition-all duration-300",
                       isActive
                         ? "font-semibold text-primary"
-                        : "text-secondary hover:text-foreground",
-                      hoveredItem === item.label &&
-                        !isActive &&
-                        "translate-x-1",
+                        : "text-secondary hover:text-foreground hover:translate-x-1",
                     )}
                   >
-                    {isActive && (
-                      <div className="absolute -left-3 rounded-lg bg-primary w-5 h-10"></div>
-                    )}
+                    <div
+                      className={cn(
+                        "absolute -left-7 rounded-lg bg-primary w-5 h-10 transition-all duration-300",
+                        isActive
+                          ? "opacity-100 scale-y-100"
+                          : "opacity-0 scale-y-50",
+                      )}
+                    ></div>
                     <item.icon className="w-4 h-4" />
                     <span className="text-lg">{item.label}</span>
                   </Link>
                 );
               })}
+
+              {/* login button */}
+              <button
+                className="w-full flex items-center cursor-pointer gap-2.5 px-2.5 py-2 text-secondary hover:text-foreground hover:translate-x-1 transition-all duration-300"
+                onClick={() => logOutUser()}
+              >
+                <LogOut className="w-4 h-4" />
+                <span className="text-lg font-extralight hover:font-semibold">
+                  Logout
+                </span>
+              </button>
             </nav>
           </div>
         </div>
