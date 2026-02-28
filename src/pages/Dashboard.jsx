@@ -1,31 +1,29 @@
-import { useContext } from "react";
-import Header from "../components/header/Header";
-import { AuthContext } from "../contexts";
-import { Navigate } from "react-router";
+import DashboardHeader from "../components/dashboard/DashboardHeader";
+import SecondRow from "../components/dashboard/SecondRow";
+import ThirdRow from "../components/dashboard/ThirdRow";
+import StatsCard from "../components/ui/StatsCard";
 
 const Dashboard = () => {
-  const { user } = useContext(AuthContext);
-
-  if (!user?.token) {
-    return <Navigate to="/login" />;
-  }
   return (
-    <div className="lg:ml-72 ml-4  mt-4 mr-4 h-[calc(100vh-32px)] flex flex-col gap-4">
-      {/* top header */}
-      <Header />
+    <div className="bg-light-white flex flex-col rounded-2xl p-6">
+      {/* dashboard header */}
+      <DashboardHeader />
 
-      {/* content area */}
-      <div className="bg-light-white flex flex-col rounded-2xl">
-        {/* content area header */}
-        <div className="flex justify-between">
-          <h1>Dashboard</h1>
+      {/* cards grid */}
+      <div className="grid grid-cols-12 gap-4 auto-rows-min lg:grid-rows-[repeat(9,auto)]">
+        <StatsCard
+          gradient={true}
+          className="col-span-12 md:col-span-6 lg:col-span-3 lg:row-start-1 lg:row-span-3"
+        />
+        <StatsCard className="col-span-12 md:col-span-6 lg:col-span-3 lg:row-start-1 lg:row-span-3" />
+        <StatsCard className="col-span-12 md:col-span-6 lg:col-span-3 lg:row-start-1 lg:row-span-3" />
+        <StatsCard className="col-span-12 md:col-span-6 lg:col-span-3 lg:row-start-1 lg:row-span-3" />
 
-          {/* header action buttons */}
-          <div>header actions</div>
-        </div>
+        {/* 2nd row */}
+        <SecondRow />
 
-        {/* cards grid */}
-        <div className="grid grid-cols-4 grid-rows-6">all the cards</div>
+        {/* 3rd row */}
+        <ThirdRow />
       </div>
     </div>
   );

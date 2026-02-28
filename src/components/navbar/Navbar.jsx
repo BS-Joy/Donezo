@@ -10,7 +10,7 @@ const navIcons = [
   { icon: Bell, label: "Notifications" },
 ];
 
-const Header = () => {
+const Navbar = () => {
   const { setShowSidebar } = useContext(SidebarContext);
   return (
     <header className="w-full bg-light-white text-center rounded-2xl flex justify-between items-center md:py-4 py-2 md:px-6 px-3">
@@ -69,4 +69,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Navbar;

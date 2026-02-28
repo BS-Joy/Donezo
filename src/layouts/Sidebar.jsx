@@ -26,7 +26,6 @@ const menuItems = [
 const generalItems = [
   { icon: Settings, label: "Settings", href: "/settings" },
   { icon: LifeBuoy, label: "Help", href: "/help" },
-  // { icon: LogOut, label: "Logout", href: "/logout" },
 ];
 
 export default function Sidebar() {
@@ -69,9 +68,7 @@ export default function Sidebar() {
                   <Link
                     key={item.label}
                     to={item.href}
-                    // onClick={() => setShowSidebar(false)}
-                    // onMouseEnter={() => setHoveredItem(item.label)}
-                    // onMouseLeave={() => setHoveredItem(null)}
+                    onClick={() => setShowSidebar(false)}
                     className={cn(
                       "relative w-full flex items-center gap-2.5 px-2.5 py-2 font-extralight hover:font-semibold transition-all duration-300",
                       isActive
@@ -120,9 +117,7 @@ export default function Sidebar() {
                   <Link
                     key={item.label}
                     to={item.href}
-                    // onClick={() => setShowSidebar(false)}
-                    // onMouseEnter={() => setHoveredItem(item.label)}
-                    // onMouseLeave={() => setHoveredItem(null)}
+                    onClick={() => setShowSidebar(false)}
                     className={cn(
                       "relative w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg font-extralight hover:font-semibold transition-all duration-300",
                       isActive

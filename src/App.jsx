@@ -4,7 +4,6 @@ import Layout from "./layouts/Layout";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import PrivateRoute from "./routes/PrivateRoute";
-import PublicRoute from "./routes/PublicRoute";
 import { AuthContextProvider } from "./contexts/AuthContextProvider";
 
 function App() {
@@ -15,28 +14,20 @@ function App() {
         {
           path: "/",
           element: (
-            // <PrivateRoute>
-            <Dashboard />
-            // </PrivateRoute>
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
           ),
         },
         {
           path: "/settings",
-          element: (
-            // <PrivateRoute>
-            <div className="p-4">Settings Page</div>
-            // </PrivateRoute>
-          ),
+          element: <div className="p-4">Settings Page</div>,
         },
       ],
     },
     {
       path: "/login",
-      element: (
-        // <PublicRoute>
-        <Login />
-        // </PublicRoute>
-      ),
+      element: <Login />,
     },
   ]);
   return (
