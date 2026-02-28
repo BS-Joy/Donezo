@@ -14,7 +14,7 @@ const Navbar = () => {
   const { setShowSidebar } = useContext(SidebarContext);
   const { user } = useContext(AuthContext);
 
-  const userName = user.email.split("@")[0];
+  const userName = user?.email.split("@")[0];
   return (
     <header className="w-full bg-light-white text-center rounded-2xl flex justify-between items-center md:py-4 py-2 md:px-6 px-3">
       <div className="flex items-center gap-2 flex-1 min-w-0 mr-3">
