@@ -63,12 +63,12 @@ export default function Sidebar() {
               Menu
             </p>
             <nav className="space-y-0.5">
-              {menuItems.map((item) => {
+              {menuItems.map((item, index) => {
                 const isActive = pathname === item.href;
                 return (
                   <Link
                     key={item.label}
-                    to={item.href}
+                    to={index === 0 ? item.href : "#"}
                     onClick={() => setShowSidebar(false)}
                     className={cn(
                       "relative w-full flex items-center gap-2.5 px-2.5 py-2 font-extralight hover:font-semibold transition-all duration-300",
@@ -117,7 +117,7 @@ export default function Sidebar() {
                 return (
                   <Link
                     key={item.label}
-                    to={item.href}
+                    to="#"
                     onClick={() => setShowSidebar(false)}
                     className={cn(
                       "relative w-full flex items-center gap-2.5 px-2.5 py-2 rounded-lg font-extralight hover:font-semibold transition-all duration-300",

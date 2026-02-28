@@ -19,10 +19,10 @@ function App() {
             </PrivateRoute>
           ),
         },
-        {
-          path: "/settings",
-          element: <div className="p-4">Settings Page</div>,
-        },
+        // {
+        //   path: "/settings",
+        //   element: <div className="p-4">Settings Page</div>,
+        // },
       ],
     },
     {
