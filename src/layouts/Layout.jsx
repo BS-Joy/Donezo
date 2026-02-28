@@ -8,7 +8,7 @@ const Layout = () => {
     <SidebarContextProvider>
       <main className="bg-white">
         <Sidebar />
-        <div className="lg:ml-72 ml-4  mt-4 mr-4 h-[calc(100vh-32px)] flex flex-col gap-4">
+        <div className="lg:ml-76 ml-8 mt-4 mr-4 h-[calc(100vh-32px)] flex flex-col gap-4">
           <Navbar />
           <Outlet />
         </div>

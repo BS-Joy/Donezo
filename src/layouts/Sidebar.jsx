@@ -14,6 +14,7 @@ import { cn } from "../lib/utils";
 import { Link, useLocation } from "react-router";
 import Logo from "../components/Logo";
 import { AuthContext, SidebarContext } from "../contexts";
+import SidebarAdd from "./SidebarAdd";
 
 const menuItems = [
   { icon: LayoutDashboard, label: "Dashboard", href: "/" },
@@ -39,7 +40,7 @@ export default function Sidebar() {
       {/* Sidebar */}
       <aside
         className={cn(
-          "fixed top-4 left-0 lg:left-4 z-40 w-64 h-[calc(100vh-32px)] overflow-y-auto rounded-2xl bg-light-white p-4 pt-8 transition-transform duration-300",
+          "fixed top-4 left-0 lg:left-4 z-40 w-68 h-[calc(100vh-32px)] overflow-y-auto rounded-2xl bg-light-white p-4 pt-8 transition-transform duration-300",
           showSidebar ? "translate-x-0" : "-translate-x-full",
           "lg:translate-x-0",
         )}
@@ -152,6 +153,7 @@ export default function Sidebar() {
             </nav>
           </div>
         </div>
+        <SidebarAdd />
       </aside>
 
       {/* Backdrop */}
