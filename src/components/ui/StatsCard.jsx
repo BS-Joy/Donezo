@@ -25,7 +25,7 @@ const StatsCard = ({
             gradient ? "text-white" : "text-black",
           )}
         >
-          Total Projects
+          {title}
         </span>
 
         {/* Arrow button */}
@@ -44,7 +44,7 @@ const StatsCard = ({
         <span
           id="countEl"
           className={cn(
-            "text-[72px] font-semibold leading-none",
+            "text-xl md:text-3xl lg:text-[50px] font-semibold leading-none",
             gradient ? "text-white" : "text-black",
           )}
           style={{
@@ -58,7 +58,7 @@ const StatsCard = ({
       `,
           }}
         >
-          24
+          {value}
         </span>
       </div>
 
@@ -69,17 +69,19 @@ const StatsCard = ({
           gradient ? "text-[#d6e362bf]" : "text-primary",
         )}
       >
-        <span
-          className={cn(
-            "inline-flex items-center gap-1 border rounded-lg px-2 py-0.5 text-[12.5px] font-semibold ",
-            gradient
-              ? "bg-[rgba(200,170,50,0.08)] border-[rgba(220,190,80,0.35)]"
-              : "bg-white border-secondary",
-          )}
-        >
-          <span className="font-bold">5</span>
-          <ChevronUp fill={gradient ? "#d6e362bf" : "#1a5c38"} size={14} />
-        </span>
+        {badge && (
+          <span
+            className={cn(
+              "inline-flex items-center gap-1 border rounded-lg px-2 py-0.5 text-[12.5px] font-semibold ",
+              gradient
+                ? "bg-[rgba(200,170,50,0.08)] border-[rgba(220,190,80,0.35)]"
+                : "bg-white border-secondary",
+            )}
+          >
+            <span className="font-bold">5</span>
+            <ChevronUp fill={gradient ? "#d6e362bf" : "#1a5c38"} size={14} />
+          </span>
+        )}
 
         <span
           className={cn(
@@ -87,7 +89,7 @@ const StatsCard = ({
             gradient && "text-shadow-xs text-shadow-yellow-300",
           )}
         >
-          Increased from last month
+          {trend}
         </span>
       </div>
     </div>

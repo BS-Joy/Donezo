@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import avatarImage from "../../assets/avatar.webp";
 import SearchBar from "./SearchBar";
 import { useContext } from "react";
-import { SidebarContext } from "../../contexts";
+import { AuthContext, SidebarContext } from "../../contexts";
 
 const navIcons = [
   { icon: Mail, label: "Messages" },
@@ -12,6 +12,9 @@ const navIcons = [
 
 const Navbar = () => {
   const { setShowSidebar } = useContext(SidebarContext);
+  const { user } = useContext(AuthContext);
+
+  const userName = user.email.split("@")[0];
   return (
     <header className="w-full bg-light-white text-center rounded-2xl flex justify-between items-center md:py-4 py-2 md:px-6 px-3">
       <div className="flex items-center gap-2 flex-1 min-w-0 mr-3">
@@ -60,8 +63,10 @@ const Navbar = () => {
 
           {/* user info */}
           <div className="hidden lg:block">
-            <p className="text-base text-start font-semibold">John Doe</p>
-            <p className="text-xs text-gray-500">john.doe@mail.com</p>
+            <p className="text-base text-start font-semibold">
+              {userName || "N/A"}
+            </p>
+            <p className="text-xs text-gray-500">{user?.email || "N/A"}</p>
           </div>
         </div>
       </div>

@@ -4,50 +4,13 @@ import CardWrapper from "../ui/CardWrapper";
 import GaugeChart from "./GaugeChart";
 import TimeTrackerBg from "../../assets/timetrbg.webp";
 
-const members = [
-  {
-    name: "Alexandra Deff",
-    task: "Github Project Repository",
-    status: "Completed",
-    bg: "bg-red-100",
-    statusColor: "bg-green-100 text-green-600",
-    avatar: "👩‍💻",
-  },
-  {
-    name: "Edwin Adenike",
-    task: "Integrate User Authentication System",
-    status: "In Progress",
-    bg: "bg-green-100",
-    statusColor: "bg-yellow-100 text-yellow-600",
-    avatar: "🧑‍💻",
-  },
-  {
-    name: "Isaac Oluwatemilorun",
-    task: "Develop Search and Filter Functionality",
-    status: "Pending",
-    bg: "bg-blue-100",
-    statusColor: "bg-red-100 text-red-600",
-    avatar: "👨‍💻",
-  },
-  {
-    name: "David Oshodi",
-    task: "Responsive Layout for Homepage",
-    status: "In Progress",
-    bg: "bg-yellow-100",
-    statusColor: "bg-yellow-100 text-yellow-600",
-    avatar: "👨‍💻",
-  },
-];
-
-const ThirdRow = () => {
+const ThirdRow = ({ users }) => {
   return (
     <>
       {/* users list */}
-      <CardWrapper className="col-span-12 md:col-span-6 lg:col-span-5 lg:row-start-7 lg:row-span-3">
+      <CardWrapper className="col-span-12 md:col-span-6 lg:col-span-5 lg:row-start-7 lg:row-span-3 max-h-112.5 overflow-y-auto">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-lg font-semibold text-gray-900">
-            Team Collaboration
-          </h2>
+          <h2 className="text-lg font-semibold text-gray-900">Team</h2>
 
           <Button fill={false} className="flex items-center gap-2">
             <Plus size={16} />
@@ -56,37 +19,51 @@ const ThirdRow = () => {
         </div>
 
         <div className="space-y-5">
-          {members.map((member, index) => (
-            <div key={index} className="flex items-center justify-between">
-              {/* Left side */}
-              <div className="flex items-center gap-4">
-                {/* Avatar */}
-                <div
-                  className={`w-10 h-10 rounded-full flex items-center justify-center text-lg ${member.bg}`}
-                >
-                  {member.avatar}
-                </div>
+          {users.map((user) => {
+            // Generate avatar initials
+            const initials = user.name
+              .split(" ")
+              .map((n) => n[0])
+              .join("")
+              .toUpperCase();
 
-                {/* Info */}
-                <div>
-                  <h3 className="font-medium text-gray-900">{member.name}</h3>
-                  <p className="text-sm text-gray-500">
-                    Working on{" "}
-                    <span className="font-medium text-gray-700">
-                      {member.task}
-                    </span>
-                  </p>
-                </div>
-              </div>
+            // Status colors
+            const statusColor =
+              user.status === "active"
+                ? "bg-green-100 text-green-800"
+                : "bg-red-100 text-red-800";
 
-              {/* Status */}
-              <span
-                className={`text-xs px-3 py-1 rounded-full font-medium ${member.statusColor}`}
+            return (
+              <div
+                key={user.id}
+                className="flex items-center justify-between p-3"
               >
-                {member.status}
-              </span>
-            </div>
-          ))}
+                {/* Left side */}
+                <div className="flex items-center gap-4">
+                  {/* Avatar */}
+                  <div className="w-10 h-10 rounded-full flex items-center justify-center bg-gray-200 text-gray-700 font-semibold">
+                    {initials}
+                  </div>
+
+                  {/* Info */}
+                  <div>
+                    <h3 className="font-medium text-gray-900">{user.name}</h3>
+                    <p className="text-sm text-gray-500">Email: {user.email}</p>
+                    <p className="text-sm text-gray-500">
+                      Joined: {new Date(user.joinDate).toLocaleDateString()}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Status */}
+                <span
+                  className={`text-xs px-3 py-1 rounded-full font-medium ${statusColor}`}
+                >
+                  {user.status}
+                </span>
+              </div>
+            );
+          })}
         </div>
       </CardWrapper>
 
